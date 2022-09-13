@@ -1,0 +1,2 @@
+GET https://api.ggpredict.dev:8080/restapi/players
+
