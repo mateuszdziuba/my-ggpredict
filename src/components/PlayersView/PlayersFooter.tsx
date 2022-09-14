@@ -22,11 +22,18 @@ const PlayersFooter = ({
       <div>
         <p className="text-sm text-gray-500">
           Showing{' '}
-          <span className="font-medium text-gray-300">{1 + page * 10}</span> to{' '}
-          <span className="font-medium text-gray-300">
-            {isLast ? players : (page + 1) * 10}
-          </span>{' '}
-          of <span className="font-medium text-gray-300">{players}</span>{' '}
+          {players ? (
+            <>
+              <span className="font-medium text-gray-300">{1 + page * 10}</span>{' '}
+              to{' '}
+              <span className="font-medium text-gray-300">
+                {isLast ? players : (page + 1) * 10}
+              </span>
+            </>
+          ) : (
+            <span className="font-medium text-gray-300">0</span>
+          )}{' '}
+          of <span className="font-medium text-gray-300">{players || 0}</span>{' '}
           results
         </p>
       </div>
@@ -38,7 +45,9 @@ const PlayersFooter = ({
           <a
             href="#"
             className={`relative inline-flex items-center rounded-l-md px-2 py-2 text-sm font-medium ${
-              isFirst ? disabled : 'text-white'
+              isFirst || typeof isFirst === 'undefined'
+                ? disabled
+                : 'text-white'
             }`}
             onClick={() => setPage(0)}
           >
@@ -57,9 +66,11 @@ const PlayersFooter = ({
           <a
             href="#"
             className={`relative inline-flex items-center rounded-l-md px-2 py-2 text-sm font-medium  ${
-              isFirst ? disabled : 'text-white'
+              isFirst || typeof isFirst === 'undefined'
+                ? disabled
+                : 'text-white'
             }`}
-            onClick={() => setPage(isFirst ? 0 : page - 1)}
+            onClick={() => setPage(isFirst || page === 0 ? 0 : page - 1)}
           >
             <span className="sr-only">Previous</span>
             <svg
@@ -76,13 +87,13 @@ const PlayersFooter = ({
           <div className="flex items-center">
             <p className="text-sm text-gray-500">
               Page <span className="font-medium text-gray-300">{page + 1}</span>{' '}
-              of <span className="font-medium text-gray-300">{pages}</span>
+              of <span className="font-medium text-gray-300">{pages || 1}</span>
             </p>
           </div>
           <a
             href="#"
             className={`relative inline-flex items-center rounded-r-md px-2 py-2 text-sm font-medium ${
-              isLast ? disabled : 'text-white'
+              isLast || typeof isLast === 'undefined' ? disabled : 'text-white'
             }`}
             onClick={() => {
               if (pages) setPage(isLast ? pages - 1 : page + 1);
@@ -103,7 +114,7 @@ const PlayersFooter = ({
           <a
             href="#"
             className={`relative inline-flex items-center rounded-r-md px-2 py-2 text-sm font-medium ${
-              isLast ? disabled : 'text-white'
+              isLast || typeof isLast === 'undefined' ? disabled : 'text-white'
             }`}
             onClick={() => {
               if (pages) setPage(pages - 1);

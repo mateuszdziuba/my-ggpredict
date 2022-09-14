@@ -36,7 +36,7 @@ const PlayersTable = ({ players }: PlayersTablesProps) => {
         </tr>
       </thead>
       <tbody className="bg-transparent">
-        {players &&
+        {players && players.length > 0 ? (
           players.map((player) => (
             <tr
               key={player.id}
@@ -57,7 +57,14 @@ const PlayersTable = ({ players }: PlayersTablesProps) => {
               <td className="w-[1px] text-center">{result(player)?.D || 0}</td>
               <td className="w-[1px] text-center">{result(player)?.L || 0}</td>
             </tr>
-          ))}
+          ))
+        ) : (
+          <tr>
+            <td colSpan={8} className="py-3 text-center bg-transparent">
+              Nothing found
+            </td>
+          </tr>
+        )}
       </tbody>
     </table>
   );
