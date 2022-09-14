@@ -18,7 +18,7 @@ npm run dev
 
 ## Stack used
 
--   Vite + React + TS 💪
--   Tailwind + DaisyUI 🌼
--   Axios, React Query ❤
--   Eslint + Prettier 🧹
+- Vite + React + TS 💪
+- Tailwind + DaisyUI 🌼
+- Axios, React Query ❤
+- Eslint + Prettier 🧹
