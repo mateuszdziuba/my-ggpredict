@@ -19,7 +19,7 @@ const PlayersView = () => {
     if (!query) return setSearchBy('');
     setPage(0);
     setSearchBy(query);
-  }, 1000);
+  }, 500);
 
   return (
     <div className="container mx-auto p-10">
