@@ -37,27 +37,30 @@ const PlayersTable = ({ players }: PlayersTablesProps) => {
       </thead>
       <tbody className="bg-transparent">
         {players && players.length > 0 ? (
-          players.map((player) => (
-            <tr
-              key={player.id}
-              className="text-white [&>*]:bg-transparent [&>*]:border-white/10"
-            >
-              <td className="relative w-5 p-0 after:absolute after:right-0 after:top-1/2 after:w-[1px] after:h-2/3 after:translate-y-[-50%] after:bg-white/10">
-                <img src={logoWhite} className="w-5 h-5" />
-              </td>
-              <td>{player.name}</td>
-              <td>{player.nick}</td>
-              <td>{new Date().getFullYear() - player.birthYear}</td>
-              <td>
-                <span
-                  className={` fi fi-${player.country.toLowerCase()}`}
-                ></span>
-              </td>
-              <td className="w-[1px] text-center">{result(player)?.W || 0}</td>
-              <td className="w-[1px] text-center">{result(player)?.D || 0}</td>
-              <td className="w-[1px] text-center">{result(player)?.L || 0}</td>
-            </tr>
-          ))
+          players.map((player) => {
+            const playerResults = result(player);
+            return (
+              <tr
+                key={player.id}
+                className="text-white [&>*]:bg-transparent [&>*]:border-white/10"
+              >
+                <td className="relative w-5 p-0 after:absolute after:right-0 after:top-1/2 after:w-[1px] after:h-2/3 after:translate-y-[-50%] after:bg-white/10">
+                  <img src={logoWhite} className="w-5 h-5" />
+                </td>
+                <td>{player.name}</td>
+                <td>{player.nick}</td>
+                <td>{new Date().getFullYear() - player.birthYear}</td>
+                <td>
+                  <span
+                    className={` fi fi-${player.country.toLowerCase()}`}
+                  ></span>
+                </td>
+                <td className="w-[1px] text-center">{playerResults?.W || 0}</td>
+                <td className="w-[1px] text-center">{playerResults?.D || 0}</td>
+                <td className="w-[1px] text-center">{playerResults?.L || 0}</td>
+              </tr>
+            );
+          })
         ) : (
           <tr>
             <td colSpan={8} className="py-3 text-center bg-transparent">
