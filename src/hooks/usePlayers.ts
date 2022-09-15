@@ -8,9 +8,9 @@ const fetchPlayers = async (size: number, page: number, searchBy: string) => {
       'https://api.ggpredict.dev:8080/restapi/players',
       {
         params: {
-          page,
-          searchBy,
           size,
+          page,
+          ...(searchBy && { searchBy }),
         },
       }
     );
