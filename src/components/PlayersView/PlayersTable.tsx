@@ -21,6 +21,8 @@ const PlayersTable = ({ players }: PlayersTablesProps) => {
     );
   };
 
+  const yearNow = new Date().getFullYear();
+
   return (
     <table className="table table-auto w-full">
       <thead className="text-gray-500 border-b border-white/10">
@@ -49,7 +51,7 @@ const PlayersTable = ({ players }: PlayersTablesProps) => {
                 </td>
                 <td>{player.name}</td>
                 <td>{player.nick}</td>
-                <td>{new Date().getFullYear() - player.birthYear}</td>
+                <td>{yearNow - player.birthYear}</td>
                 <td>
                   <span
                     className={` fi fi-${player.country.toLowerCase()}`}
