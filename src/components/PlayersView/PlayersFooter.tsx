@@ -46,7 +46,7 @@ const PlayersFooter = ({
       <div>
         <span className="text-sm text-gray-500">Per page: </span>
         <select
-          className="select max-w-xs bg-transparent font-medium text-gray-300 focus:outline-none"
+          className="select max-w-xs bg-transparent font-medium text-gray-300 focus:outline-none [&>option]:text-black"
           value={size}
           onChange={(e) => setSize(Number(e.target.value))}
         >

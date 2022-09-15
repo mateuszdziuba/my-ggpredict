@@ -31,11 +31,11 @@ const PlayersTable = ({ players }: PlayersTablesProps) => {
             <th className="w-[2%] rounded-none"> </th>
             <th className="w-1/4">Name</th>
             <th className="w-1/6">Nick</th>
-            <th className="w-1/6">Age</th>
-            <th className="w-1/6">Country</th>
-            <th className="w-[4%] text-green-500">Won</th>
-            <th className="w-[4%]">Drawn</th>
-            <th className="w-[4%] text-red-600">Lost</th>
+            <th className="w-1/6 text-center">Age</th>
+            <th className="w-1/6 text-center">Country</th>
+            <th className="w-[4%] text-green-500 text-center">Won</th>
+            <th className="w-[4%] text-center">Drawn</th>
+            <th className="w-[4%] text-red-600 text-center">Lost</th>
           </tr>
         </thead>
         <tbody className="bg-transparent align-baseline">
@@ -47,13 +47,13 @@ const PlayersTable = ({ players }: PlayersTablesProps) => {
                   key={player.id}
                   className="text-white [&>*]:bg-transparent [&>*]:border-white/10"
                 >
-                  <td className="relative z-0 p-0 after:absolute after:right-0 after:top-1/2 after:w-[1px] after:h-2/3 after:translate-y-[-50%] after:bg-white/10">
+                  <td className="relative z-0 p-0 pl-1 after:absolute after:right-0 after:top-1/2 after:w-[1px] after:h-2/3 after:translate-y-[-50%] after:bg-white/10">
                     <img src={logoWhite} className="w-5 h-5" />
                   </td>
                   <td>{player.name}</td>
                   <td>{player.nick}</td>
-                  <td>{yearNow - player.birthYear}</td>
-                  <td>
+                  <td className="text-center">{yearNow - player.birthYear}</td>
+                  <td className="text-center">
                     <span
                       className={`z-0 fi fi-${player.country.toLowerCase()}`}
                     ></span>
