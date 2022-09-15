@@ -7,10 +7,12 @@ import Loader from '../Common/Loader';
 import PlayersHeader from './PlayersHeader';
 
 const PlayersView = () => {
-  const [searchBy, setSearchBy] = useState<string>('');
+  const [size, setSize] = useState<number>(10);
   const [page, setPage] = useState<number>(0);
+  const [searchBy, setSearchBy] = useState<string>('');
   const { players, totalPages, totalPlayers, isLoading, isFirst, isLast } =
     usePlayers({
+      size,
       page,
       searchBy,
     });
@@ -28,6 +30,8 @@ const PlayersView = () => {
       <PlayersFooter
         page={page}
         setPage={setPage}
+        size={size}
+        setSize={setSize}
         pages={totalPages}
         players={totalPlayers}
         isFirst={isFirst}

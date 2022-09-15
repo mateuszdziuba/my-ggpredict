@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { ApiData } from '../types';
 
-const fetchPlayers = async (page: number, searchBy: string) => {
+const fetchPlayers = async (size: number, page: number, searchBy: string) => {
   try {
     const response = await axios.get(
       'https://api.ggpredict.dev:8080/restapi/players',
@@ -10,7 +10,7 @@ const fetchPlayers = async (page: number, searchBy: string) => {
         params: {
           page,
           searchBy,
-          size: 10,
+          size,
         },
       }
     );
@@ -21,15 +21,16 @@ const fetchPlayers = async (page: number, searchBy: string) => {
 };
 
 interface UsePlayerProps {
+  size: number;
   page: number;
   searchBy: string;
 }
 
-const usePlayers = ({ page, searchBy }: UsePlayerProps) => {
+const usePlayers = ({ size, page, searchBy }: UsePlayerProps) => {
   //keepPreviousData - opcja dla api z paginacją
   const { data, isLoading } = useQuery(
-    ['players', { page, searchBy }],
-    () => fetchPlayers(page, searchBy),
+    ['players', { size, page, searchBy }],
+    () => fetchPlayers(size, page, searchBy),
     { keepPreviousData: true }
   );
 

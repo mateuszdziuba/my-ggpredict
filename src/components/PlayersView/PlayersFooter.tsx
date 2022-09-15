@@ -3,6 +3,8 @@ const disabled = 'text-gray-500 pointer-events-none cursor-none';
 interface PlayersFooterProps {
   page: number;
   setPage: (page: number) => void;
+  size: number;
+  setSize: (size: number) => void;
   pages?: number;
   players?: number;
   isFirst?: boolean;
@@ -12,6 +14,8 @@ interface PlayersFooterProps {
 const PlayersFooter = ({
   page,
   setPage,
+  size,
+  setSize,
   pages,
   players,
   isFirst,
@@ -24,10 +28,12 @@ const PlayersFooter = ({
           Showing{' '}
           {players ? (
             <>
-              <span className="font-medium text-gray-300">{1 + page * 10}</span>{' '}
+              <span className="font-medium text-gray-300">
+                {1 + page * size}
+              </span>{' '}
               to{' '}
               <span className="font-medium text-gray-300">
-                {isLast ? players : (page + 1) * 10}
+                {isLast ? players : (page + 1) * size}
               </span>
             </>
           ) : (
@@ -36,6 +42,18 @@ const PlayersFooter = ({
           of <span className="font-medium text-gray-300">{players || 0}</span>{' '}
           results
         </p>
+      </div>
+      <div>
+        <span className="text-sm text-gray-500">Per page: </span>
+        <select
+          className="select max-w-xs bg-transparent font-medium text-gray-300 focus:outline-none"
+          value={size}
+          onChange={(e) => setSize(Number(e.target.value))}
+        >
+          <option value={10}>10</option>
+          <option value={20}>20</option>
+          <option value={50}>50</option>
+        </select>
       </div>
       <div>
         <nav
