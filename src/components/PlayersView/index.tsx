@@ -10,12 +10,19 @@ const PlayersView = () => {
   const [size, setSize] = useState<number>(10);
   const [page, setPage] = useState<number>(0);
   const [searchBy, setSearchBy] = useState<string>('');
-  const { players, totalPages, totalPlayers, isLoading, isFirst, isLast } =
-    usePlayers({
-      size,
-      page,
-      searchBy,
-    });
+  const {
+    players,
+    totalPages,
+    totalPlayers,
+    isLoading,
+    isFetching,
+    isFirst,
+    isLast,
+  } = usePlayers({
+    size,
+    page,
+    searchBy,
+  });
 
   const handleChange = debounce((query: string) => {
     if (!query) return setSearchBy('');
@@ -26,7 +33,11 @@ const PlayersView = () => {
   return (
     <div className="container mx-auto p-10">
       <PlayersHeader handleChange={handleChange} />
-      {isLoading ? <Loader /> : <PlayersTable players={players} />}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <PlayersTable players={players} isFetching={isFetching} />
+      )}
       <PlayersFooter
         page={page}
         setPage={setPage}

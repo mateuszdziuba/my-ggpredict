@@ -28,7 +28,7 @@ interface UsePlayerProps {
 
 const usePlayers = ({ size, page, searchBy }: UsePlayerProps) => {
   //keepPreviousData - opcja dla api z paginacją
-  const { data, isLoading } = useQuery(
+  const { data, isLoading, isFetching } = useQuery(
     ['players', { size, page, searchBy }],
     () => fetchPlayers(size, page, searchBy),
     { keepPreviousData: true }
@@ -39,6 +39,7 @@ const usePlayers = ({ size, page, searchBy }: UsePlayerProps) => {
     totalPages: data?.totalPages,
     totalPlayers: data?.totalElements,
     isLoading,
+    isFetching,
     isFirst: data?.first,
     isLast: data?.last,
   };

@@ -1,8 +1,10 @@
 import logoWhite from '../../assets/logo-white.svg';
 import { Player } from '../../types';
+import Loader from '../Common/Loader';
 
 interface PlayersTablesProps {
   players?: Player[];
+  isFetching: boolean;
 }
 
 interface IResults {
@@ -11,7 +13,7 @@ interface IResults {
   D: number;
 }
 
-const PlayersTable = ({ players }: PlayersTablesProps) => {
+const PlayersTable = ({ players, isFetching }: PlayersTablesProps) => {
   const result = (player: Player): IResults => {
     return player?.team?.lastResults?.reduce(
       (a, o) => {
@@ -24,7 +26,7 @@ const PlayersTable = ({ players }: PlayersTablesProps) => {
   const yearNow = new Date().getFullYear();
 
   return (
-    <div className="max-h-[618px] w-full overflow-auto">
+    <div className="max-h-[618px] w-full overflow-auto relative">
       <table className="table table-fixed w-full">
         <thead className="sticky top-0 z-10 text-gray-500 border-b bg-inherit border-white/10">
           <tr className="[&>*]:bg-[#181c2c] ">
@@ -73,6 +75,11 @@ const PlayersTable = ({ players }: PlayersTablesProps) => {
           )}
         </tbody>
       </table>
+      {isFetching && (
+        <div className="sticky h-[618px] inset-0 grid content-center bg-white/5">
+          <Loader />
+        </div>
+      )}
     </div>
   );
 };
